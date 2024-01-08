@@ -1,0 +1,13 @@
+name: Di Hola
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    hola-mundo:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Echo del mensaje
+              run: echo "Hola Gino!"
