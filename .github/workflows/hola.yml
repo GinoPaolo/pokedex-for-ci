@@ -11,3 +11,6 @@ jobs:
         steps:
             - name: Echo del mensaje
               run: echo "Hola Gino!"
+            - name: Dame la fecha
+              run: date
+            - run: ls -l
