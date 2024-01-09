@@ -25,5 +25,5 @@ jobs:
               run: npm run eslint
             - name: Generando build
               run: npm run build
-            - name: Ejecutando tests
+            - name: Ejecutando tests unitarios con Jest
               run: npm run test
