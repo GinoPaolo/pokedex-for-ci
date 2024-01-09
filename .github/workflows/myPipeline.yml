@@ -15,7 +15,9 @@ jobs:
                   fetch-depth: 0
             - name: Listando archivos
               run: ls -l
-            - name: Setup node
+            - name: Configurando Node
               uses: actions/setup-node@v4
               with:
                   node-version: "16"
+            - name: Ejecutando Lint
+              run: npm run eslint

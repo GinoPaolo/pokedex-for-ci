@@ -3,7 +3,7 @@ name: Di Hola
 on:
     push:
         branches:
-            - main
+            - pepito
 
 jobs:
     hola-mundo:
