@@ -23,3 +23,7 @@ jobs:
               run: npm install --force --no-audit --no-fund --no-optional
             - name: Ejecutando Lint
               run: npm run eslint
+            - name: Generando build
+              run: npm run build
+            - name: Ejecutando tests
+              run: npm run test
