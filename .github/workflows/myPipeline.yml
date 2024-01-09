@@ -20,6 +20,6 @@ jobs:
               with:
                   node-version: "16"
             - name: Instalando dependencias npm
-              run: npm install
+              run: npm install --force
             - name: Ejecutando Lint
               run: npm run eslint
