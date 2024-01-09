@@ -1,0 +1,13 @@
+name: My Pipeline para diferentes jobs
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    Descargando-aplicacion:
+        runs-on: ubuntu-latest
+        steps:
+            - name: pruebita
+              run: echo "pruebita"
