@@ -1,4 +1,4 @@
-name: My Pipeline para diferentes jobs
+name: Mi pipeline para diferentes jobs
 
 on:
     push:
@@ -20,6 +20,6 @@ jobs:
               with:
                   node-version: "16"
             - name: Instalando dependencias npm
-              run: npm install --force
+              run: npm install --force --no-audit --no-fund --no-optional
             - name: Ejecutando Lint
               run: npm run eslint
