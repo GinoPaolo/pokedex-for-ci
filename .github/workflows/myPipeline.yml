@@ -6,8 +6,11 @@ on:
             - main
 
 jobs:
-    Descargando-aplicacion:
+    deploy:
         runs-on: ubuntu-latest
         steps:
-            - name: pruebita
-              run: echo "pruebita"
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+            - name: listando archivos descargados
+              run: ls -l
