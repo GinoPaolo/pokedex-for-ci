@@ -28,7 +28,7 @@ jobs:
             - name: Ejecutando tests unitarios con Jest
               run: npm run test
             - name: Ejecutando test E2E con Cypress
-              uses: cypress-io/github-action@v2
+              run: npm run test:e2e
               with:
                 command: npm run test:e2e
                 start: npm run start-test
