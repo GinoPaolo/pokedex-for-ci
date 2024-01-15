@@ -30,6 +30,6 @@ jobs:
             - name: Preparando app para pruebas
               run: npm run start-test &
             - name: Preparando aplicación
-              run: sleep
+              run: sleep 5
             - name: test E2E con Cypress
               run: npm run test:e2e
