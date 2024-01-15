@@ -28,6 +28,8 @@ jobs:
             - name: Ejecutando tests unitarios con Jest
               run: npm run test
             - name: Preparando app para pruebas
-              run: npm run start-test
+              run: npm run start-test &
+            - name: Preparando aplicación
+              run: sleep 5
             - name: test E2E con Cypress
               run: npm run test:e2e
