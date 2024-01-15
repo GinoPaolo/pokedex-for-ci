@@ -20,7 +20,7 @@ jobs:
               with:
                   node-version: "16"
             - name: Instalando dependencias NPM-
-              run: npm ci --force --no-audit --no-fund --no-optional
+              run: npm install --force --no-audit --no-fund --no-optional
             - name: Ejecutando Lint
               run: npm run eslint
             - name: Generando build
@@ -30,6 +30,6 @@ jobs:
             - name: Preparando app para pruebas
               run: npm run start-test &
             - name: Preparando aplicación
-              run: sleep 5
+              run: sleep
             - name: test E2E con Cypress
               run: npm run test:e2e
