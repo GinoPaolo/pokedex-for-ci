@@ -27,9 +27,7 @@ jobs:
               run: npm run build
             - name: Ejecutando tests unitarios con Jest
               run: npm run test
-            - name: Ejecutando test E2E con Cypress
+            - name: Preparando app para pruebas
+              run: npm run start-test
+            - name: test E2E con Cypress
               run: npm run test:e2e
-              with:
-                command: npm run test:e2e
-                start: npm run start-test
-                wait-on: http://localhost:5000
