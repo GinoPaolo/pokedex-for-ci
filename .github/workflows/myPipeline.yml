@@ -19,9 +19,9 @@ jobs:
               uses: actions/setup-node@v4
               with:
                   node-version: "16"
-            - name: Instalando dependencias NPM-
+            - name: Instalando dependencias NPM
               run: npm install --force --no-audit --no-fund --no-optional
-            - name: Ejecutando Lint
+            - name: Ejecutando Linter
               run: npm run eslint
             - name: Generando build
               run: npm run build
@@ -31,5 +31,5 @@ jobs:
               run: npm run start-test &
             - name: Preparando aplicación
               run: sleep 5
-            - name: test E2E con Cypress
+            - name: Ejecutando test E2E con Cypress
               run: npm run test:e2e
