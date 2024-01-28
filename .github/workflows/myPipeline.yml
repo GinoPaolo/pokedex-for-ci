@@ -1,4 +1,4 @@
-name: Mi pipeline para diferentes jobs
+name: CI-CD Proyecto demo
 
 on:
     push:
@@ -30,6 +30,7 @@ jobs:
               run: npm install --force --no-audit --no-fund --no-optional
 
     linter:
+        needs: installing
         runs-on: ubuntu-latest
         steps:
             - name: Descargando proyecto
@@ -47,6 +48,7 @@ jobs:
               run: npm run eslint
 
     building:
+        needs: installing
         runs-on: ubuntu-latest
         steps:
             - name: Descargando proyecto
