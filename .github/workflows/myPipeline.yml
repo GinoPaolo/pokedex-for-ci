@@ -99,7 +99,7 @@ jobs:
             - name: Ejecutando test E2E con Cypress
               run: npm run test:e2e
 
-    desploying-application:
+    deploying-application:
         needs: [unit-testing, e2e-testing]
         runs-on: ubuntu-latest
         steps:
