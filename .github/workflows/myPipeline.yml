@@ -37,3 +37,5 @@ jobs:
               run: sleep 5
             - name: Ejecutando test E2E con Cypress
               run: npm run test:e2e
+            - name: Desplegando proyecto
+              run: echo "Despliegue ficticio"
