@@ -6,19 +6,21 @@ on:
             - main
 
 jobs:
-    deploy:
+    canceling-previous:
         runs-on: ubuntu-latest
         steps:
             - name: Cancelando ejecuciones en curso
               uses: styfle/cancel-workflow-action@0.9.1
               with:
                   access_token: ${{github.token}}
+
+    linter:
+        runs-on: ubuntu-latest
+        steps:
             - name: Descargando proyecto
               uses: actions/checkout@v4
               with:
                   fetch-depth: 0
-            - name: Listando archivos
-              run: ls -l
             - name: Configurando Node
               uses: actions/setup-node@v4
               with:
@@ -27,15 +29,79 @@ jobs:
               run: npm install --force --no-audit --no-fund --no-optional
             - name: Ejecutando Linter
               run: npm run eslint
+
+    building:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Descargando proyecto
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+            - name: Configurando Node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "16"
+            - name: Instalando dependencias NPM
+              run: npm install --force --no-audit --no-fund --no-optional
             - name: Generando build
               run: npm run build
+            - name: Cacheando build
+              uses: actions/upload-artifact@v4
+              with:
+                name: dist
+                path: dist
+
+    unit-testing:
+        needs: [linter, building]
+        runs-on: ubuntu-latest
+        steps:
+            - name: Descargando proyecto
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+            - name: Configurando Node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "16"
+            - name: Instalando dependencias NPM
+              run: npm install --force --no-audit --no-fund --no-optional
+            - name: Descargando build
+              uses: actions/download-artifact@v4
+              with:
+                name: dist
+                path: dist
             - name: Ejecutando tests unitarios con Jest
               run: npm run test
+
+    e2e-testing:
+        needs: [linter, building]
+        runs-on: ubuntu-latest
+        steps:
+            - name: Descargando proyecto
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+            - name: Configurando Node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "16"
+            - name: Instalando dependencias NPM
+              run: npm install --force --no-audit --no-fund --no-optional
+            - name: Descargando build
+              uses: actions/download-artifact@v4
+              with:
+                name: dist
+                path: dist
             - name: Preparando app para pruebas
               run: npm run start-test &
             - name: Preparando aplicación
               run: sleep 5
             - name: Ejecutando test E2E con Cypress
               run: npm run test:e2e
+
+    desploying-application:
+        needs: [unit-testing, e2e-testing]
+        runs-on: ubuntu-latest
+        steps:
             - name: Desplegando proyecto
               run: echo "Despliegue ficticio"
