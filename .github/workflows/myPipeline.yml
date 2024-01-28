@@ -14,6 +14,21 @@ jobs:
               with:
                   access_token: ${{github.token}}
 
+    installing:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Descargando proyecto
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+            - name: Configurando Node
+              uses: actions/setup-node@v4
+              with:
+                  cache: 'npm'
+                  node-version: "16"
+            - name: Instalando dependencias NPM
+              run: npm install --force --no-audit --no-fund --no-optional
+
     linter:
         runs-on: ubuntu-latest
         steps:
@@ -24,6 +39,7 @@ jobs:
             - name: Configurando Node
               uses: actions/setup-node@v4
               with:
+                  cache: 'npm'
                   node-version: "16"
             - name: Instalando dependencias NPM
               run: npm install --force --no-audit --no-fund --no-optional
@@ -40,6 +56,7 @@ jobs:
             - name: Configurando Node
               uses: actions/setup-node@v4
               with:
+                  cache: 'npm'
                   node-version: "16"
             - name: Instalando dependencias NPM
               run: npm install --force --no-audit --no-fund --no-optional
@@ -62,6 +79,7 @@ jobs:
             - name: Configurando Node
               uses: actions/setup-node@v4
               with:
+                  cache: 'npm'
                   node-version: "16"
             - name: Instalando dependencias NPM
               run: npm install --force --no-audit --no-fund --no-optional
@@ -84,6 +102,7 @@ jobs:
             - name: Configurando Node
               uses: actions/setup-node@v4
               with:
+                  cache: 'npm'
                   node-version: "16"
             - name: Instalando dependencias NPM
               run: npm install --force --no-audit --no-fund --no-optional
